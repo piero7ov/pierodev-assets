@@ -4,37 +4,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>pierodev-assets · Biblioteca</title>
+
   <style>
     :root{
-      --bg1:#06101f;
-      --bg2:#0b2a5b;
-      --card:#0b162d;
-      --stroke:rgba(255,255,255,.10);
-      --muted:rgba(255,255,255,.72);
-      --text:rgba(255,255,255,.93);
-      --blue:#3b82f6;
-      --orange:#f97316;
-      --radius:16px;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+
+      --blue: #2563eb;
+      --orange: #f97316;
+
+      --radius: 16px;
+      --shadow: 0 10px 25px rgba(2, 6, 23, .08);
+      --shadow2: 0 6px 16px rgba(2, 6, 23, .08);
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--text);
-      background:linear-gradient(135deg, var(--bg1), var(--bg2));
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(900px 420px at 10% 0%, rgba(37, 99, 235, .10), transparent 60%),
+        radial-gradient(900px 420px at 90% 10%, rgba(249, 115, 22, .10), transparent 60%),
+        var(--bg);
       min-height:100vh;
     }
     a{color:inherit}
 
     header{
-      position:sticky;
-      top:0;
-      z-index:10;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 248, 251, .88);
       backdrop-filter: blur(10px);
-      background:rgba(6,16,31,.72);
-      border-bottom:1px solid var(--stroke);
+      border-bottom: 1px solid var(--border);
     }
-    .wrap{max-width:1100px; margin:0 auto; padding:18px 16px;}
+
+    .wrap{max-width:1120px; margin:0 auto; padding:18px 16px;}
     .title{
       display:flex;
       gap:14px;
@@ -43,58 +56,105 @@
       flex-wrap:wrap;
     }
     h1{margin:0; font-size:20px; letter-spacing:.2px}
-    .subtitle{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.35}
+    .subtitle{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13.5px;
+      line-height:1.4;
+    }
 
     .baseRow{
       display:flex;
-      gap:8px;
+      gap:10px;
       align-items:center;
       flex-wrap:wrap;
       margin-top:12px;
     }
+
     .pill{
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.06);
-      padding:8px 10px;
+      border:1px solid var(--border);
+      background: var(--surface);
+      padding:10px 12px;
       border-radius:999px;
-      font-size:12px;
+      font-size:12.5px;
       color:var(--muted);
       max-width:100%;
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .pill code{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text);
+      background: var(--surface2);
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
     }
 
     .controls{
-      display:flex;
+      display:grid;
+      grid-template-columns: 1fr 220px 220px auto;
       gap:10px;
-      flex-wrap:wrap;
       margin-top:14px;
+      align-items:center;
     }
+    @media (max-width: 920px){
+      .controls{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px){
+      .controls{ grid-template-columns: 1fr; }
+    }
+
     input, select, button{
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
+      border:1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
       border-radius:12px;
-      padding:10px 12px;
+      padding:12px 12px;
       font-size:14px;
       outline:none;
+      box-shadow: var(--shadow2);
     }
-    input{flex:1; min-width:220px}
-    button{cursor:pointer}
+    input::placeholder{ color:#94a3b8; }
+    input:focus, select:focus{
+      border-color: rgba(37, 99, 235, .55);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+    }
+
+    /* ✅ FIX: opciones del select legibles (dropdown) */
+    select option{
+      color: #0f172a !important;
+      background: #ffffff !important;
+    }
+
+    button{cursor:pointer; transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;}
+    button:hover{
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, .35);
+      box-shadow: var(--shadow);
+    }
+
     button.primary{
-      border-color:transparent;
-      background:linear-gradient(135deg, var(--blue), #22c55e);
-      color:#071221;
-      font-weight:700;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), #60a5fa);
+      color: #fff;
+      font-weight: 750;
     }
     button.secondary{
-      border-color:transparent;
-      background:linear-gradient(135deg, var(--orange), #facc15);
-      color:#1b1106;
-      font-weight:700;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--orange), #fb923c);
+      color: #fff;
+      font-weight: 750;
     }
-    button.ghost{background:transparent}
+    button.ghost{
+      background: transparent;
+    }
 
     main .wrap{padding-top:16px; padding-bottom:30px;}
 
@@ -105,35 +165,42 @@
     }
 
     .card{
-      border:1px solid var(--stroke);
-      background:rgba(11,22,45,.85);
+      border:1px solid var(--border);
+      background: var(--surface);
       border-radius:var(--radius);
       overflow:hidden;
-      box-shadow:0 14px 30px rgba(0,0,0,.25);
+      box-shadow: var(--shadow2);
       display:flex;
       flex-direction:column;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      min-height: 360px;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(37, 99, 235, .35);
+      box-shadow: var(--shadow);
     }
 
     .thumb{
       height:190px;
-      padding:12px;
+      padding:14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      border-bottom:1px solid var(--stroke);
+      border-bottom:1px solid var(--border);
       background:
-        radial-gradient(1200px 300px at 30% 20%, rgba(59,130,246,.22), transparent 50%),
-        radial-gradient(900px 300px at 70% 40%, rgba(249,115,22,.16), transparent 55%),
-        rgba(255,255,255,.03);
+        linear-gradient(135deg, rgba(37, 99, 235, .08), rgba(249, 115, 22, .08)),
+        #ffffff;
     }
 
     /* Fondo tipo tablero para transparencia */
     .checker{
       background:
-        linear-gradient(45deg, rgba(255,255,255,.08) 25%, transparent 25%) 0 0/22px 22px,
-        linear-gradient(-45deg, rgba(255,255,255,.08) 25%, transparent 25%) 0 0/22px 22px,
-        linear-gradient(45deg, transparent 75%, rgba(255,255,255,.08) 75%) 0 0/22px 22px,
-        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.08) 75%) 0 0/22px 22px;
+        linear-gradient(45deg, rgba(2,6,23,.06) 25%, transparent 25%) 0 0/22px 22px,
+        linear-gradient(-45deg, rgba(2,6,23,.06) 25%, transparent 25%) 0 0/22px 22px,
+        linear-gradient(45deg, transparent 75%, rgba(2,6,23,.06) 75%) 0 0/22px 22px,
+        linear-gradient(-45deg, transparent 75%, rgba(2,6,23,.06) 75%) 0 0/22px 22px,
+        #ffffff;
     }
 
     .thumb img{
@@ -141,27 +208,28 @@
       max-height:100%;
       object-fit:contain;
       border-radius:12px;
-      background:rgba(0,0,0,.08);
+      background: rgba(2,6,23,.02);
+      border: 1px solid rgba(226,232,240,.85);
     }
 
-    .body{padding:12px 12px 14px}
-    .name{font-weight:800; font-size:15px; margin:0 0 8px}
-    .meta{font-size:12px; color:var(--muted); margin:0 0 10px; line-height:1.35}
+    .body{padding:14px 14px 14px; display:flex; flex-direction:column; gap:10px; flex:1;}
+    .name{font-weight:800; font-size:15px; margin:0;}
+    .meta{font-size:12.5px; color:var(--muted); margin:0; line-height:1.4;}
 
-    .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px}
+    .tags{display:flex; flex-wrap:wrap; gap:6px; margin:0;}
     .tag{
       font-size:12px;
       padding:4px 8px;
       border-radius:999px;
-      border:1px solid var(--stroke);
-      background:rgba(0,0,0,.12);
-      color:var(--muted);
+      border:1px solid var(--border);
+      background:#fff;
+      color:#334155;
     }
 
-    .actions{display:flex; flex-wrap:wrap; gap:8px}
-    .actions a, .actions button{
-      border:1px solid var(--stroke);
-      background:rgba(0,0,0,.10);
+    .actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto;}
+    .aLink, .aBtn{
+      border:1px solid var(--border);
+      background:#fff;
       padding:9px 10px;
       border-radius:12px;
       font-size:13px;
@@ -169,26 +237,41 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
     }
-    .actions a:hover, .actions button:hover{border-color:rgba(59,130,246,.55)}
+    .aLink:hover, .aBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, .35);
+      box-shadow: var(--shadow);
+    }
+    .aBtn.css{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--orange), #fb923c);
+      color: #fff;
+      font-weight: 750;
+    }
 
     .path{
       margin-top:10px;
-      padding:8px 10px;
+      padding:10px 10px;
       border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      color:rgba(255,255,255,.75);
+      border:1px dashed var(--border);
+      color:#0f172a;
       font-size:12px;
       word-break:break-all;
-      background:rgba(0,0,0,.10);
+      background: var(--surface2);
+      font-family: var(--mono);
     }
 
     .empty{
       padding:14px 16px;
-      border:1px solid var(--stroke);
+      border:1px solid var(--border);
       border-radius:var(--radius);
-      background:rgba(255,255,255,.05);
+      background: var(--surface);
       color:var(--muted);
+      box-shadow: var(--shadow2);
     }
 
     .toast{
@@ -196,45 +279,46 @@
       left:50%;
       bottom:18px;
       transform:translateX(-50%);
-      background:rgba(11,22,45,.95);
-      border:1px solid var(--stroke);
+      background:#0f172a;
+      color:#fff;
       padding:10px 12px;
-      border-radius:12px;
+      border-radius:999px;
       font-size:14px;
       display:none;
-      box-shadow:0 12px 25px rgba(0,0,0,.28);
+      box-shadow: 0 12px 30px rgba(2,6,23,.25);
     }
 
-    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    code{font-family:var(--mono)}
   </style>
 </head>
+
 <body>
   <header>
     <div class="wrap">
       <div class="title">
         <div>
-          <h1>pierodev-assets · Biblioteca de imágenes</h1>
+          <h1>📚 pierodev-assets · Biblioteca de imágenes</h1>
           <p class="subtitle">
-            Usa estas imágenes como <code>src</code> en cualquier HTML (web o email). La página te ayuda a copiar la URL completa y un snippet listo.
+            Usa estas imágenes como <code>src</code> en cualquier HTML (web o email). Copia la URL completa o snippets listos ✨
           </p>
         </div>
       </div>
 
       <div class="baseRow">
-        <span class="pill" id="basePill">Base: …</span>
-        <button class="ghost" id="copyBase" type="button">Copiar base</button>
-        <button class="ghost" id="openManifest" type="button">Ver manifest.json</button>
+        <span class="pill" id="basePill">🔗 Base: <code>…</code></span>
+        <button class="primary" id="copyBase" type="button">📋 Copiar base</button>
+        <button class="ghost" id="openManifest" type="button">🧾 Ver manifest.json</button>
       </div>
 
       <div class="controls">
-        <input id="q" type="search" placeholder="Buscar por nombre o tag (ej: logo, email, banner)…" />
+        <input id="q" type="search" placeholder="🔎 Buscar por nombre o tag (ej: logo, email, banner)..." />
         <select id="category">
-          <option value="">Todas las categorías</option>
+          <option value="">🗂️ Todas las categorías</option>
         </select>
         <select id="tag">
-          <option value="">Todos los tags</option>
+          <option value="">🏷️ Todos los tags</option>
         </select>
-        <button class="ghost" id="btnClear" type="button">Limpiar</button>
+        <button class="ghost" id="btnClear" type="button">🧹 Limpiar</button>
       </div>
     </div>
   </header>
@@ -242,7 +326,7 @@
   <main>
     <div class="wrap">
       <div id="grid" class="grid"></div>
-      <div id="empty" class="empty" style="display:none; margin-top:14px;">No hay resultados con ese filtro.</div>
+      <div id="empty" class="empty" style="display:none; margin-top:14px;">No hay resultados con ese filtro 😅</div>
     </div>
   </main>
 
@@ -263,11 +347,8 @@
     let items = [];
 
     function baseUrl(){
-      // Si estás en /pierodev-assets/index.html -> devuelve https://.../pierodev-assets/
-      const path = location.pathname.endsWith('.html')
-        ? location.pathname.replace(/[^/]+$/, '')
-        : (location.pathname.endsWith('/') ? location.pathname : location.pathname + '/');
-      return location.origin + path;
+      // Base real del sitio (termina en /)
+      return new URL('./', location.href).href;
     }
 
     function showToast(text){
@@ -277,10 +358,10 @@
       showToast._t = setTimeout(() => toast.style.display = 'none', 1400);
     }
 
-    async function copy(text){
+    async function copy(text, msg='Copiado ✅'){
       try{
         await navigator.clipboard.writeText(text);
-        showToast('Copiado ✅');
+        showToast(msg);
       }catch{
         const ta = document.createElement('textarea');
         ta.value = text;
@@ -288,8 +369,16 @@
         ta.select();
         document.execCommand('copy');
         ta.remove();
-        showToast('Copiado ✅');
+        showToast(msg);
       }
+    }
+
+    function escAttr(s){
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
     }
 
     function guessCategory(path){
@@ -298,6 +387,14 @@
       // Esperado: [brand, <marca>, <categoria>, <archivo>]
       if(parts.length >= 3) return parts[2];
       return 'otros';
+    }
+
+    function catEmoji(cat){
+      const c = String(cat).toLowerCase();
+      if(c === 'logos') return '🧩';
+      if(c === 'banner' || c === 'banners') return '🖼️';
+      if(c === 'destacados' || c === 'destacado') return '⭐';
+      return '📁';
     }
 
     function uniqSorted(arr){
@@ -315,11 +412,11 @@
       const tagList = uniqSorted(tags);
       const catList = uniqSorted(cats);
 
-      tagSelect.innerHTML = '<option value="">Todos los tags</option>' +
-        tagList.map(t => `<option value="${t}">${t}</option>`).join('');
+      tagSelect.innerHTML = '<option value="">🏷️ Todos los tags</option>' +
+        tagList.map(t => `<option value="${t}">🏷️ ${t}</option>`).join('');
 
-      catSelect.innerHTML = '<option value="">Todas las categorías</option>' +
-        catList.map(c => `<option value="${c}">${c}</option>`).join('');
+      catSelect.innerHTML = '<option value="">🗂️ Todas las categorías</option>' +
+        catList.map(c => `<option value="${c}">${catEmoji(c)} ${c}</option>`).join('');
     }
 
     function matches(it, query, tag, cat){
@@ -357,43 +454,86 @@
       grid.innerHTML = filtered.map(it => {
         const url = base + it.path;
         const w = recommendedWidth(it.path);
-        const imgSnippet = w
-          ? `<img src=\"${url}\" width=\"${w}\" alt=\"${it.name}\">`
-          : `<img src=\"${url}\" alt=\"${it.name}\">`;
-
         const isLogo = it.category === 'logos';
         const tagsHtml = (it.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
 
         return `
           <article class="card">
             <div class="thumb ${isLogo ? 'checker' : ''}">
-              <img src="${it.path}" alt="${it.name}" loading="lazy">
+              <img src="${it.path}" alt="${escAttr(it.name)}" loading="lazy">
             </div>
+
             <div class="body">
-              <div class="name">${it.name}</div>
-              <div class="meta">
-                <strong>Categoría:</strong> ${it.category}${it.notes ? ` · <span>${it.notes}</span>` : ''}
-              </div>
+              <p class="name">${catEmoji(it.category)} ${escAttr(it.name)}</p>
+
+              <p class="meta">
+                <strong>🗂️ Categoría:</strong> ${escAttr(it.category)}
+                ${it.notes ? ` · <span>${escAttr(it.notes)}</span>` : ''}
+              </p>
+
               <div class="tags">${tagsHtml}</div>
+
               <div class="actions">
-                <a href="${it.path}" target="_blank" rel="noopener">Abrir</a>
-                <button type="button" onclick="window.__copy('${url.replace(/'/g, "\\'")}')">Copiar URL</button>
-                <button type="button" onclick="window.__copy('${imgSnippet.replace(/'/g, "\\'")}')">Copiar &lt;img&gt;</button>
+                <a class="aLink" href="${it.path}" target="_blank" rel="noopener">🔍 Abrir</a>
+
+                <button class="aBtn" type="button"
+                  data-action="copy-url"
+                  data-url="${escAttr(url)}">📋 Copiar URL</button>
+
+                <button class="aBtn" type="button"
+                  data-action="copy-img"
+                  data-url="${escAttr(url)}"
+                  data-name="${escAttr(it.name)}"
+                  data-width="${w}">🖼️ Copiar &lt;img&gt;</button>
+
+                <button class="aBtn css" type="button"
+                  data-action="copy-css"
+                  data-url="${escAttr(url)}">🎨 Copiar CSS</button>
               </div>
-              <div class="path"><code>${url}</code></div>
+
+              <div class="path"><code>${escAttr(url)}</code></div>
             </div>
           </article>
         `;
       }).join('');
     }
 
-    window.__copy = copy;
+    // Delegación de eventos para los botones de copiar
+    grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if(!btn) return;
+
+      const action = btn.dataset.action;
+      const url = btn.dataset.url || '';
+      const name = btn.dataset.name || 'Imagen';
+      const width = btn.dataset.width || '';
+
+      if(action === 'copy-url'){
+        copy(url, 'URL copiada ✅');
+        return;
+      }
+
+      if(action === 'copy-img'){
+        const alt = name.replace(/"/g, '&quot;');
+        const snippet = width
+          ? `<img src="${url}" width="${width}" alt="${alt}">`
+          : `<img src="${url}" alt="${alt}">`;
+        copy(snippet, '<img> copiado 🖼️');
+        return;
+      }
+
+      if(action === 'copy-css'){
+        const snippet = `background: url("${url}") center/cover no-repeat;`;
+        copy(snippet, 'CSS copiado 🎨');
+        return;
+      }
+    });
 
     async function init(){
       const base = baseUrl();
-      basePill.textContent = 'Base: ' + base;
+      basePill.innerHTML = '🔗 Base: <code>' + escAttr(base) + '</code>';
 
-      copyBase.addEventListener('click', () => copy(base));
+      copyBase.addEventListener('click', () => copy(base, 'Base copiada 📋'));
       openManifest.addEventListener('click', () => window.open('manifest.json', '_blank'));
 
       try{
@@ -424,7 +564,7 @@
         console.error(err);
         grid.innerHTML = `
           <div class="empty">
-            No pude cargar <code>manifest.json</code>. Revisa que exista en la raíz del repo y que sea JSON válido.
+            ⚠️ No pude cargar <code>manifest.json</code>. Revisa que exista en la raíz del repo y que sea JSON válido.
           </div>
         `;
       }

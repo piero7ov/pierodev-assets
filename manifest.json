@@ -1,22 +1,29 @@
 {
+  "version": 1,
   "items": [
     {
       "name": "Logo principal (PNG)",
       "path": "brand/pierodev/logos/logo.png",
+      "category": "logos",
       "tags": ["logo", "pierodev", "png", "web", "email"],
-      "notes": "Usa width=200-300 para email."
+      "notes": "Para email: width=200–300.",
+      "email_width": 220
     },
     {
       "name": "Banner 1 (PNG)",
       "path": "brand/pierodev/banner/banner1.png",
+      "category": "banner",
       "tags": ["banner", "pierodev", "png", "email"],
-      "notes": "Para email suele usarse ancho 600px (o 1200px retina)."
+      "notes": "Para email suele usarse ancho 600px (o 1200px retina).",
+      "email_width": 600
     },
     {
       "name": "Destacado 1 (PNG)",
       "path": "brand/pierodev/destacados/destacado1.png",
+      "category": "destacados",
       "tags": ["destacado", "pierodev", "png", "email"],
-      "notes": "Imagen destacada para prácticas de email."
+      "notes": "Imagen destacada para prácticas de email.",
+      "email_width": 600
     }
   ]
 }
