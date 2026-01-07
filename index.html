@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>pierodev-assets · Biblioteca</title>
+  <style>
+    :root{
+      --bg1:#06101f;
+      --bg2:#0b2a5b;
+      --card:#0b162d;
+      --stroke:rgba(255,255,255,.10);
+      --muted:rgba(255,255,255,.72);
+      --text:rgba(255,255,255,.93);
+      --blue:#3b82f6;
+      --orange:#f97316;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+    a{color:inherit}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(10px);
+      background:rgba(6,16,31,.72);
+      border-bottom:1px solid var(--stroke);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 16px;}
+    .title{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    h1{margin:0; font-size:20px; letter-spacing:.2px}
+    .subtitle{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.35}
+
+    .baseRow{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .pill{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      max-width:100%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    input, select, button{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:14px;
+      outline:none;
+    }
+    input{flex:1; min-width:220px}
+    button{cursor:pointer}
+    button.primary{
+      border-color:transparent;
+      background:linear-gradient(135deg, var(--blue), #22c55e);
+      color:#071221;
+      font-weight:700;
+    }
+    button.secondary{
+      border-color:transparent;
+      background:linear-gradient(135deg, var(--orange), #facc15);
+      color:#1b1106;
+      font-weight:700;
+    }
+    button.ghost{background:transparent}
+
+    main .wrap{padding-top:16px; padding-bottom:30px;}
+
+    .grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(11,22,45,.85);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+      display:flex;
+      flex-direction:column;
+    }
+
+    .thumb{
+      height:190px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-bottom:1px solid var(--stroke);
+      background:
+        radial-gradient(1200px 300px at 30% 20%, rgba(59,130,246,.22), transparent 50%),
+        radial-gradient(900px 300px at 70% 40%, rgba(249,115,22,.16), transparent 55%),
+        rgba(255,255,255,.03);
+    }
+
+    /* Fondo tipo tablero para transparencia */
+    .checker{
+      background:
+        linear-gradient(45deg, rgba(255,255,255,.08) 25%, transparent 25%) 0 0/22px 22px,
+        linear-gradient(-45deg, rgba(255,255,255,.08) 25%, transparent 25%) 0 0/22px 22px,
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,.08) 75%) 0 0/22px 22px,
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.08) 75%) 0 0/22px 22px;
+    }
+
+    .thumb img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      border-radius:12px;
+      background:rgba(0,0,0,.08);
+    }
+
+    .body{padding:12px 12px 14px}
+    .name{font-weight:800; font-size:15px; margin:0 0 8px}
+    .meta{font-size:12px; color:var(--muted); margin:0 0 10px; line-height:1.35}
+
+    .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px}
+    .tag{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,.12);
+      color:var(--muted);
+    }
+
+    .actions{display:flex; flex-wrap:wrap; gap:8px}
+    .actions a, .actions button{
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,.10);
+      padding:9px 10px;
+      border-radius:12px;
+      font-size:13px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .actions a:hover, .actions button:hover{border-color:rgba(59,130,246,.55)}
+
+    .path{
+      margin-top:10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px dashed rgba(255,255,255,.18);
+      color:rgba(255,255,255,.75);
+      font-size:12px;
+      word-break:break-all;
+      background:rgba(0,0,0,.10);
+    }
+
+    .empty{
+      padding:14px 16px;
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background:rgba(11,22,45,.95);
+      border:1px solid var(--stroke);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:14px;
+      display:none;
+      box-shadow:0 12px 25px rgba(0,0,0,.28);
+    }
+
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <div>
+          <h1>pierodev-assets · Biblioteca de imágenes</h1>
+          <p class="subtitle">
+            Usa estas imágenes como <code>src</code> en cualquier HTML (web o email). La página te ayuda a copiar la URL completa y un snippet listo.
+          </p>
+        </div>
+      </div>
+
+      <div class="baseRow">
+        <span class="pill" id="basePill">Base: …</span>
+        <button class="ghost" id="copyBase" type="button">Copiar base</button>
+        <button class="ghost" id="openManifest" type="button">Ver manifest.json</button>
+      </div>
+
+      <div class="controls">
+        <input id="q" type="search" placeholder="Buscar por nombre o tag (ej: logo, email, banner)…" />
+        <select id="category">
+          <option value="">Todas las categorías</option>
+        </select>
+        <select id="tag">
+          <option value="">Todos los tags</option>
+        </select>
+        <button class="ghost" id="btnClear" type="button">Limpiar</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div id="grid" class="grid"></div>
+      <div id="empty" class="empty" style="display:none; margin-top:14px;">No hay resultados con ese filtro.</div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast">Copiado ✅</div>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const q = document.getElementById('q');
+    const tagSelect = document.getElementById('tag');
+    const catSelect = document.getElementById('category');
+    const btnClear = document.getElementById('btnClear');
+    const toast = document.getElementById('toast');
+    const basePill = document.getElementById('basePill');
+    const copyBase = document.getElementById('copyBase');
+    const openManifest = document.getElementById('openManifest');
+
+    let items = [];
+
+    function baseUrl(){
+      // Si estás en /pierodev-assets/index.html -> devuelve https://.../pierodev-assets/
+      const path = location.pathname.endsWith('.html')
+        ? location.pathname.replace(/[^/]+$/, '')
+        : (location.pathname.endsWith('/') ? location.pathname : location.pathname + '/');
+      return location.origin + path;
+    }
+
+    function showToast(text){
+      toast.textContent = text;
+      toast.style.display = 'block';
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.style.display = 'none', 1400);
+    }
+
+    async function copy(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast('Copiado ✅');
+      }catch{
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('Copiado ✅');
+      }
+    }
+
+    function guessCategory(path){
+      // brand/pierodev/logos/logo.png -> logos
+      const parts = String(path).split('/');
+      // Esperado: [brand, <marca>, <categoria>, <archivo>]
+      if(parts.length >= 3) return parts[2];
+      return 'otros';
+    }
+
+    function uniqSorted(arr){
+      return Array.from(new Set(arr)).sort((a,b)=>a.localeCompare(b));
+    }
+
+    function buildFilters(){
+      const tags = [];
+      const cats = [];
+      items.forEach(it => {
+        (it.tags || []).forEach(t => tags.push(String(t).toLowerCase()));
+        cats.push(it.category);
+      });
+
+      const tagList = uniqSorted(tags);
+      const catList = uniqSorted(cats);
+
+      tagSelect.innerHTML = '<option value="">Todos los tags</option>' +
+        tagList.map(t => `<option value="${t}">${t}</option>`).join('');
+
+      catSelect.innerHTML = '<option value="">Todas las categorías</option>' +
+        catList.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    function matches(it, query, tag, cat){
+      const hay = (it.name + ' ' + (it.tags || []).join(' ') + ' ' + it.category).toLowerCase();
+      const okQ = !query || hay.includes(query);
+      const okT = !tag || (it.tags || []).map(x => String(x).toLowerCase()).includes(tag);
+      const okC = !cat || it.category === cat;
+      return okQ && okT && okC;
+    }
+
+    function recommendedWidth(path){
+      // sugerencia suave para email
+      const cat = guessCategory(path);
+      if(cat === 'logos') return 220;
+      if(cat === 'banner') return 600;
+      if(cat === 'destacados') return 600;
+      return '';
+    }
+
+    function render(){
+      const query = q.value.trim().toLowerCase();
+      const tag = tagSelect.value.trim().toLowerCase();
+      const cat = catSelect.value.trim();
+      const base = baseUrl();
+
+      const filtered = items.filter(it => matches(it, query, tag, cat));
+
+      if(filtered.length === 0){
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      grid.innerHTML = filtered.map(it => {
+        const url = base + it.path;
+        const w = recommendedWidth(it.path);
+        const imgSnippet = w
+          ? `<img src=\"${url}\" width=\"${w}\" alt=\"${it.name}\">`
+          : `<img src=\"${url}\" alt=\"${it.name}\">`;
+
+        const isLogo = it.category === 'logos';
+        const tagsHtml = (it.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+
+        return `
+          <article class="card">
+            <div class="thumb ${isLogo ? 'checker' : ''}">
+              <img src="${it.path}" alt="${it.name}" loading="lazy">
+            </div>
+            <div class="body">
+              <div class="name">${it.name}</div>
+              <div class="meta">
+                <strong>Categoría:</strong> ${it.category}${it.notes ? ` · <span>${it.notes}</span>` : ''}
+              </div>
+              <div class="tags">${tagsHtml}</div>
+              <div class="actions">
+                <a href="${it.path}" target="_blank" rel="noopener">Abrir</a>
+                <button type="button" onclick="window.__copy('${url.replace(/'/g, "\\'")}')">Copiar URL</button>
+                <button type="button" onclick="window.__copy('${imgSnippet.replace(/'/g, "\\'")}')">Copiar &lt;img&gt;</button>
+              </div>
+              <div class="path"><code>${url}</code></div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    window.__copy = copy;
+
+    async function init(){
+      const base = baseUrl();
+      basePill.textContent = 'Base: ' + base;
+
+      copyBase.addEventListener('click', () => copy(base));
+      openManifest.addEventListener('click', () => window.open('manifest.json', '_blank'));
+
+      try{
+        const res = await fetch('manifest.json', { cache: 'no-store' });
+        const data = await res.json();
+
+        items = (data.items || []).map(it => ({
+          name: it.name || it.path,
+          path: it.path,
+          tags: it.tags || [],
+          notes: it.notes || '',
+          category: it.category || guessCategory(it.path)
+        }));
+
+        buildFilters();
+        render();
+
+        q.addEventListener('input', render);
+        tagSelect.addEventListener('change', render);
+        catSelect.addEventListener('change', render);
+        btnClear.addEventListener('click', () => {
+          q.value = '';
+          tagSelect.value = '';
+          catSelect.value = '';
+          render();
+        });
+      } catch (err){
+        console.error(err);
+        grid.innerHTML = `
+          <div class="empty">
+            No pude cargar <code>manifest.json</code>. Revisa que exista en la raíz del repo y que sea JSON válido.
+          </div>
+        `;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
