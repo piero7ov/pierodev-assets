@@ -10,24 +10,44 @@ permissions:
   pages: write
   id-token: write
 
-# Evita cola: si haces varios pushes, cancela el anterior y deja el último
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Publica el repo tal cual (index.html + assets)
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare _site folder
+        run: |
+          rm -rf _site
+          mkdir _site
+          shopt -s dotglob
+          for item in *; do
+            if [[ "$item" == ".git" || "$item" == ".github" || "$item" == "_site" ]]; then
+              continue
+            fi
+            cp -R "$item" _site/
+          done
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
-      - name: Deploy to GitHub Pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
