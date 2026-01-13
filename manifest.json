@@ -24,6 +24,39 @@
       "tags": ["destacado", "pierodev", "png", "email"],
       "notes": "Imagen destacada para prácticas de email.",
       "email_width": 600
+    },
+
+    {
+      "name": "Logo completo blanco (PNG)",
+      "path": "brand/pierodev/logos/logowhite.png",
+      "category": "logos",
+      "tags": ["logo", "pierodev", "blanco", "png", "web", "email", "header", "fondo-oscuro"],
+      "notes": "Versión blanca para fondos oscuros. Recomendado en email: width=220–300.",
+      "email_width": 220
+    },
+    {
+      "name": "Logo completo negro (PNG)",
+      "path": "brand/pierodev/logos/logoblack.png",
+      "category": "logos",
+      "tags": ["logo", "pierodev", "negro", "png", "web", "email", "fondo-claro"],
+      "notes": "Versión negra para fondos claros. Recomendado en email: width=220–300.",
+      "email_width": 220
+    },
+    {
+      "name": "Isotipo blanco (solo símbolo) (PNG)",
+      "path": "brand/pierodev/logos/solologo_blanco.png",
+      "category": "logos",
+      "tags": ["isotipo", "logo", "pierodev", "blanco", "png", "web", "avatar", "icono", "fondo-oscuro"],
+      "notes": "Isotipo para avatar/icono. En email: width=64–120 según uso.",
+      "email_width": 120
+    },
+    {
+      "name": "Logo completo a color (azul/naranja) (PNG)",
+      "path": "brand/pierodev/logos/logocompleto.png",
+      "category": "logos",
+      "tags": ["logo", "pierodev", "color", "azul", "naranja", "png", "web", "email", "principal"],
+      "notes": "Versión principal a color. Recomendado en email: width=220–300.",
+      "email_width": 220
     }
   ]
 }
