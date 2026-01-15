@@ -57,6 +57,14 @@
       "tags": ["logo", "pierodev", "color", "azul", "naranja", "png", "web", "email", "principal"],
       "notes": "Versión principal a color. Recomendado en email: width=220–300.",
       "email_width": 220
+    },
+    {
+      "name": "Isotipo negro (solo símbolo) (PNG)",
+      "path": "brand/pierodev/logos/solologo_negro.png",
+      "category": "logos",
+      "tags": ["isotipo", "logo", "pierodev", "negro", "png", "web", "avatar", "icono", "fondo-claro"],
+      "notes": "Isotipo para avatar/icono. En email: width=64–120 según uso.",
+      "email_width": 120
     }
   ]
 }
