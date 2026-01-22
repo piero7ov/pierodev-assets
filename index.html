@@ -7,78 +7,96 @@
   <title>pierodev-assets · Biblioteca</title>
 
   <style>
-    /* ---------------------------
-      THEME TOKENS (Light default)
-      Opción A — Neo-Terminal / Dev vibe
-    ---------------------------- */
+    /* =========================================================
+      WIN XP (Luna) + MODO OSCURO
+    ========================================================== */
+
+    /* =========================
+       TOKENS XP (Light default)
+    ========================= */
     :root {
       color-scheme: light;
 
-      --bg: #f6f8fb;
+      --bg: #eaf3ff;
       --surface: #ffffff;
-      --surface2: #f1f5f9;
+      --surface2: #f1f7ff;
 
-      --text: #0f172a;
-      --muted: #475569;
+      --text: #0b1220;
+      --muted: #425a7a;
 
-      --border: rgba(15, 23, 42, .14);
+      --border: rgba(20, 60, 120, .22);
+
+      /* Header celeste/azul amigable */
+      --header-bg: linear-gradient(180deg, #d9eeff, #c7e3ff);
+
+      /* ✅ Rejilla SIEMPRE azul (en claro también) */
+      --grid-line: rgba(0, 70, 160, .14);
+      --grid-line-2: rgba(0, 70, 160, .08);
+
+      /* Checker miniaturas (azul) */
+      --checker-a: rgba(0, 70, 160, .14);
+      --checker-b: rgba(255, 255, 255, .55);
+
+      /* XP border para cards */
+      --xp-border: #2f6fd6;
+      --xp-outline: rgba(160, 205, 255, .95);
 
       --blue: #2563eb;
       --orange: #f97316;
 
       --radius: 12px;
-
-      --shadow: 0 14px 30px rgba(2, 6, 23, .10);
-      --shadow2: 0 8px 18px rgba(2, 6, 23, .10);
+      --shadow: 0 16px 34px rgba(2, 6, 23, .16);
+      --shadow2: 0 10px 22px rgba(2, 6, 23, .12);
 
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-      --focus: 0 0 0 4px rgba(37, 99, 235, .12);
-
-      /* checker tokens */
-      --checker-a: rgba(2, 6, 23, .06);
-      --checker-b: transparent;
-
-      /* header */
-      --header-bg: rgba(246, 248, 251, .96);
-
-      /* scanlines sutil */
-      --scan: rgba(2, 6, 23, .05);
+      --focus: 0 0 0 4px rgba(37, 99, 235, .18);
     }
 
-    /* ---------------------------
-      DARK THEME OVERRIDES (robusto)
-      Responde si data-theme está en html o body
-    ---------------------------- */
-    html[data-theme="dark"],
-    body[data-theme="dark"] {
+    /* =========================
+       DARK MODE (XP Luna)
+    ========================= */
+    html[data-theme="dark"] {
       color-scheme: dark;
 
-      --bg: #070c14;
+      --bg: #060a12;
       --surface: #0b162d;
       --surface2: #0f213f;
 
       --text: rgba(255, 255, 255, .92);
-      --muted: rgba(255, 255, 255, .72);
+      --muted: rgba(255, 255, 255, .70);
 
       --border: rgba(255, 255, 255, .14);
 
-      --shadow: 0 22px 60px rgba(0, 0, 0, .38);
-      --shadow2: 0 14px 36px rgba(0, 0, 0, .30);
+      /* Header azul luna */
+      --header-bg: linear-gradient(180deg, #0b2a55, #071a33);
 
-      --focus: 0 0 0 4px rgba(59, 130, 246, .20);
+      /* ✅ Rejilla SIEMPRE azul (versión dark) */
+      --grid-line: rgba(120, 190, 255, .14);
+      --grid-line-2: rgba(120, 190, 255, .08);
 
-      --checker-a: rgba(255, 255, 255, .10);
-      --checker-b: transparent;
+      /* Checker miniaturas (azul oscuro) */
+      --checker-a: rgba(120, 190, 255, .16);
+      --checker-b: rgba(0, 0, 0, .22);
 
-      --header-bg: rgba(7, 12, 20, .92);
+      /* XP border más brillante en dark */
+      --xp-border: #3b82f6;
+      --xp-outline: rgba(80, 160, 255, .55);
 
-      --scan: rgba(255, 255, 255, .06);
+      --shadow: 0 24px 60px rgba(0, 0, 0, .45);
+      --shadow2: 0 16px 40px rgba(0, 0, 0, .34);
+
+      --focus: 0 0 0 4px rgba(96, 165, 250, .25);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
     }
 
     body {
@@ -87,14 +105,12 @@
       color: var(--text);
       min-height: 100vh;
 
+      /* ✅ Fondo con rejilla azul SIEMPRE (solo cambian variables) */
       background:
-        radial-gradient(900px 520px at 12% 0%, rgba(37, 99, 235, .20), transparent 60%),
-        radial-gradient(900px 520px at 88% 10%, rgba(249, 115, 22, .14), transparent 60%),
-        repeating-linear-gradient(0deg,
-          var(--scan) 0px,
-          var(--scan) 1px,
-          transparent 1px,
-          transparent 7px),
+        linear-gradient(0deg, var(--grid-line) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(90deg, var(--grid-line-2) 1px, transparent 1px) 0 0 / 22px 22px,
+        radial-gradient(900px 520px at 12% 0%, rgba(37, 99, 235, .18), transparent 60%),
+        radial-gradient(900px 520px at 88% 10%, rgba(249, 115, 22, .12), transparent 60%),
         var(--bg);
     }
 
@@ -108,15 +124,8 @@
       z-index: 10;
 
       background: var(--header-bg);
-      backdrop-filter: none;
-
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 10px 26px rgba(2, 6, 23, .08);
-    }
-
-    html[data-theme="dark"] header,
-    body[data-theme="dark"] header {
-      box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
+      border-bottom: 2px solid var(--xp-border);
+      box-shadow: var(--shadow2);
     }
 
     .wrap {
@@ -136,14 +145,13 @@
     h1 {
       margin: 0;
       font-size: 18px;
-      letter-spacing: .6px;
-      text-transform: uppercase;
+      letter-spacing: .3px;
     }
 
     .subtitle {
       margin: 6px 0 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.4;
       max-width: 70ch;
     }
@@ -157,7 +165,7 @@
     }
 
     .pill {
-      border: 1px solid var(--border);
+      border: 2px solid var(--xp-border);
       padding: 10px 12px;
       border-radius: 999px;
       font-size: 12.5px;
@@ -169,19 +177,12 @@
       display: flex;
       align-items: center;
       gap: 8px;
-
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, .35)),
-        var(--surface);
-
-      box-shadow: var(--shadow2);
+      background: var(--surface);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .75), var(--shadow2);
     }
 
-    html[data-theme="dark"] .pill,
-    body[data-theme="dark"] .pill {
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02)),
-        var(--surface);
+    html[data-theme="dark"] .pill {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), var(--shadow2);
     }
 
     .pill code {
@@ -217,39 +218,43 @@
     input,
     select,
     button {
-      border: 1px solid var(--border);
+      border: 2px solid var(--xp-border);
       background: var(--surface);
       color: var(--text);
       border-radius: 10px;
       padding: 12px 12px;
       font-size: 14px;
       outline: none;
-      box-shadow: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .75), var(--shadow2);
+    }
+
+    html[data-theme="dark"] input,
+    html[data-theme="dark"] select,
+    html[data-theme="dark"] button {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), var(--shadow2);
     }
 
     input::placeholder {
-      color: rgba(148, 163, 184, .95);
+      color: rgba(90, 120, 160, .75);
     }
 
-    html[data-theme="dark"] input::placeholder,
-    body[data-theme="dark"] input::placeholder {
-      color: rgba(148, 163, 184, .78);
+    html[data-theme="dark"] input::placeholder {
+      color: rgba(148, 163, 184, .72);
     }
 
     input:focus,
     select:focus {
-      border-color: rgba(37, 99, 235, .55);
-      box-shadow: var(--focus);
+      border-color: rgba(37, 99, 235, .75);
+      box-shadow: var(--focus), inset 0 1px 0 rgba(255, 255, 255, .75);
     }
 
     /* ✅ FIX: opciones del select legibles */
     select option {
-      color: #0f172a !important;
+      color: #0b1220 !important;
       background: #ffffff !important;
     }
 
-    html[data-theme="dark"] select option,
-    body[data-theme="dark"] select option {
+    html[data-theme="dark"] select option {
       color: rgba(255, 255, 255, .92) !important;
       background: #0b162d !important;
     }
@@ -262,29 +267,23 @@
 
     button:hover {
       transform: translateY(-1px);
-      border-color: rgba(37, 99, 235, .35);
-      box-shadow: var(--shadow2);
+    }
+
+    button:active {
+      transform: translateY(0px);
+      box-shadow: inset 0 2px 0 rgba(0, 0, 0, .10);
     }
 
     button.primary {
-      border-color: transparent;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 1), rgba(96, 165, 250, 1));
+      border-color: rgba(0, 0, 0, .08);
+      background: linear-gradient(180deg, #4fa3ff, #1f6fe0);
       color: #fff;
-      font-weight: 750;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, .22);
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 10px 20px rgba(31, 111, 224, .20);
     }
 
     button.ghost {
-      background: transparent;
-    }
-
-    button.ghost:hover {
-      background: rgba(2, 6, 23, .03);
-    }
-
-    html[data-theme="dark"] button.ghost:hover,
-    body[data-theme="dark"] button.ghost:hover {
-      background: rgba(255, 255, 255, .06);
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
     }
 
     /* Icon-only theme button */
@@ -296,16 +295,6 @@
       align-items: center;
       justify-content: center;
       border-radius: 10px;
-
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-    }
-
-    .iconBtn:hover {
-      transform: translateY(-1px);
-    }
-
-    .iconBtn:active {
-      transform: translateY(0px);
     }
 
     .iconBtn span {
@@ -325,42 +314,31 @@
     }
 
     .card {
-      border: 1px solid var(--border);
-
-      /* barra superior sin pseudo-elementos */
-      background:
-        linear-gradient(90deg, var(--blue), var(--orange)) 0 0/100% 4px no-repeat,
-        var(--surface);
-
+      border: 2px solid var(--xp-border);
+      outline: 1px solid var(--xp-outline);
+      background: var(--surface);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: none;
+      box-shadow: var(--shadow2);
       display: flex;
       flex-direction: column;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      transition: transform .12s ease, box-shadow .12s ease;
       min-height: 360px;
     }
 
     .card:hover {
       transform: translateY(-2px);
-      border-color: rgba(37, 99, 235, .55);
       box-shadow: var(--shadow);
     }
 
+    /* ✅ Checker SIEMPRE en la miniatura */
     .thumb {
       height: 190px;
       padding: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid var(--border);
-      background:
-        linear-gradient(135deg, rgba(37, 99, 235, .06), rgba(249, 115, 22, .06)),
-        var(--surface);
-    }
-
-    /* Fondo tipo tablero para transparencia */
-    .checker {
+      border-bottom: 2px solid var(--xp-border);
       background:
         linear-gradient(45deg, var(--checker-a) 25%, var(--checker-b) 25%) 0 0/22px 22px,
         linear-gradient(-45deg, var(--checker-a) 25%, var(--checker-b) 25%) 0 0/22px 22px,
@@ -374,14 +352,15 @@
       max-height: 100%;
       object-fit: contain;
       border-radius: 12px;
-      background: rgba(2, 6, 23, .02);
-      border: 1px solid rgba(226, 232, 240, .85);
+      background: rgba(255, 255, 255, .35);
+      border: 1px solid rgba(0, 0, 0, .10);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .10);
     }
 
-    html[data-theme="dark"] .thumb img,
-    body[data-theme="dark"] .thumb img {
+    html[data-theme="dark"] .thumb img {
       background: rgba(0, 0, 0, .18);
       border: 1px solid rgba(255, 255, 255, .12);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
     }
 
     .body {
@@ -393,7 +372,7 @@
     }
 
     .name {
-      font-weight: 800;
+      font-weight: 900;
       font-size: 15px;
       margin: 0;
     }
@@ -415,7 +394,7 @@
     .tag {
       font-size: 12px;
       padding: 4px 8px;
-      border-radius: 10px;
+      border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface2);
       color: var(--muted);
@@ -430,8 +409,8 @@
 
     .aLink,
     .aBtn {
-      border: 1px solid var(--border);
-      background: var(--surface);
+      border: 2px solid var(--xp-border);
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
       padding: 9px 10px;
       border-radius: 10px;
       font-size: 13px;
@@ -440,33 +419,35 @@
       align-items: center;
       gap: 8px;
 
-      box-shadow: none;
-
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .75), var(--shadow2);
       cursor: pointer;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      transition: transform .12s ease, box-shadow .12s ease;
       color: var(--text);
+    }
+
+    html[data-theme="dark"] .aLink,
+    html[data-theme="dark"] .aBtn {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), var(--shadow2);
     }
 
     .aLink:hover,
     .aBtn:hover {
       transform: translateY(-1px);
-      border-color: rgba(37, 99, 235, .35);
-      box-shadow: var(--shadow2);
     }
 
     .aBtn.css {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--orange), #fb923c);
-      color: #fff;
-      font-weight: 750;
-      box-shadow: 0 10px 20px rgba(249, 115, 22, .18);
+      border-color: rgba(0, 0, 0, .08);
+      background: linear-gradient(180deg, #ffbf57, #ff8a1f);
+      color: #1a1208;
+      font-weight: 900;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 10px 18px rgba(255, 138, 31, .18);
     }
 
     .path {
       margin-top: 10px;
       padding: 10px;
       border-radius: 12px;
-      border: 1px dashed var(--border);
+      border: 1px dashed rgba(47, 111, 214, .55);
       background: var(--surface2);
       font-family: var(--mono);
       font-size: 12px;
@@ -476,7 +457,8 @@
 
     .empty {
       padding: 14px 16px;
-      border: 1px solid var(--border);
+      border: 2px solid var(--xp-border);
+      outline: 1px solid var(--xp-outline);
       border-radius: var(--radius);
       background: var(--surface);
       color: var(--muted);
@@ -488,22 +470,15 @@
       left: 50%;
       bottom: 18px;
       transform: translateX(-50%);
-      background: #0f172a;
+      background: rgba(11, 42, 85, .95);
       color: #fff;
       padding: 10px 12px;
       border-radius: 999px;
       font-size: 14px;
       display: none;
-      box-shadow: 0 12px 30px rgba(2, 6, 23, .25);
-      border: 1px solid rgba(255, 255, 255, .16);
-      letter-spacing: .2px;
-    }
-
-    html[data-theme="dark"] .toast,
-    body[data-theme="dark"] .toast {
-      background: rgba(11, 22, 45, .95);
-      border: 1px solid rgba(255, 255, 255, .12);
       box-shadow: 0 12px 25px rgba(0, 0, 0, .28);
+      border: 1px solid rgba(255, 255, 255, .18);
+      letter-spacing: .2px;
     }
 
     code {
@@ -684,12 +659,11 @@
       grid.innerHTML = filtered.map(it => {
         const url = base + it.path;
         const w = recommendedWidth(it.path);
-        const isLogo = it.category === 'logos';
         const tagsHtml = (it.tags || []).map(t => `<span class="tag">${escAttr(t)}</span>`).join('');
 
         return `
           <article class="card">
-            <div class="thumb ${isLogo ? 'checker' : ''}">
+            <div class="thumb">
               <img src="${it.path}" alt="${escAttr(it.name)}" loading="lazy">
             </div>
 
@@ -760,19 +734,15 @@
     });
 
     // ---------------------------
-    // THEME TOGGLE (icon-only) ✅ FIX
+    // THEME TOGGLE (XP)
     // ---------------------------
-    function setTheme(theme) {
-      const t = (theme === 'dark') ? 'dark' : 'light';
-
-      // ✅ set en html y body (más robusto)
-      document.documentElement.setAttribute('data-theme', t);
-      document.body.setAttribute('data-theme', t);
-
-      try { localStorage.setItem('pierodev_assets_theme', t); } catch { }
+    function setTheme(t) {
+      const theme = (t === 'dark') ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      try { localStorage.setItem('pierodev_assets_theme', theme); } catch { }
 
       const icon = themeToggle.querySelector('span');
-      if (t === 'dark') {
+      if (theme === 'dark') {
         icon.textContent = '☀️';
         themeToggle.title = 'Cambiar a modo claro';
         themeToggle.setAttribute('aria-label', 'Cambiar a modo claro');
