@@ -7,45 +7,74 @@
   <title>pierodev-assets · Biblioteca</title>
 
   <style>
-    /* --------------------------- THEME TOKENS (Light default) ---------------------------- */
+    /* ---------------------------
+      THEME TOKENS (Light default)
+      Opción A — Neo-Terminal / Dev vibe
+    ---------------------------- */
     :root {
       color-scheme: light;
+
       --bg: #f6f8fb;
       --surface: #ffffff;
       --surface2: #f1f5f9;
+
       --text: #0f172a;
       --muted: #475569;
-      --border: #e2e8f0;
+
+      --border: rgba(15, 23, 42, .14);
+
       --blue: #2563eb;
       --orange: #f97316;
-      --radius: 16px;
-      --shadow: 0 10px 25px rgba(2, 6, 23, .08);
-      --shadow2: 0 6px 16px rgba(2, 6, 23, .08);
+
+      --radius: 12px;
+
+      --shadow: 0 14px 30px rgba(2, 6, 23, .10);
+      --shadow2: 0 8px 18px rgba(2, 6, 23, .10);
+
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
       --focus: 0 0 0 4px rgba(37, 99, 235, .12);
+
       /* checker tokens */
       --checker-a: rgba(2, 6, 23, .06);
       --checker-b: transparent;
-      /* header glass */
-      --header-bg: rgba(246, 248, 251, .88);
+
+      /* header */
+      --header-bg: rgba(246, 248, 251, .96);
+
+      /* scanlines sutil */
+      --scan: rgba(2, 6, 23, .05);
     }
 
-    /* --------------------------- DARK THEME OVERRIDES ---------------------------- */
-    html[data-theme="dark"] {
+    /* ---------------------------
+      DARK THEME OVERRIDES (robusto)
+      Responde si data-theme está en html o body
+    ---------------------------- */
+    html[data-theme="dark"],
+    body[data-theme="dark"] {
       color-scheme: dark;
+
       --bg: #070c14;
       --surface: #0b162d;
       --surface2: #0f213f;
+
       --text: rgba(255, 255, 255, .92);
       --muted: rgba(255, 255, 255, .72);
-      --border: rgba(255, 255, 255, .12);
-      --shadow: 0 16px 40px rgba(0, 0, 0, .35);
-      --shadow2: 0 12px 30px rgba(0, 0, 0, .28);
+
+      --border: rgba(255, 255, 255, .14);
+
+      --shadow: 0 22px 60px rgba(0, 0, 0, .38);
+      --shadow2: 0 14px 36px rgba(0, 0, 0, .30);
+
       --focus: 0 0 0 4px rgba(59, 130, 246, .20);
+
       --checker-a: rgba(255, 255, 255, .10);
       --checker-b: transparent;
-      --header-bg: rgba(7, 12, 20, .76);
+
+      --header-bg: rgba(7, 12, 20, .92);
+
+      --scan: rgba(255, 255, 255, .06);
     }
 
     * {
@@ -57,7 +86,16 @@
       font-family: var(--sans);
       color: var(--text);
       min-height: 100vh;
-      background: radial-gradient(900px 420px at 10% 0%, rgba(37, 99, 235, .10), transparent 60%), radial-gradient(900px 420px at 90% 10%, rgba(249, 115, 22, .10), transparent 60%), var(--bg);
+
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(37, 99, 235, .20), transparent 60%),
+        radial-gradient(900px 520px at 88% 10%, rgba(249, 115, 22, .14), transparent 60%),
+        repeating-linear-gradient(0deg,
+          var(--scan) 0px,
+          var(--scan) 1px,
+          transparent 1px,
+          transparent 7px),
+        var(--bg);
     }
 
     a {
@@ -68,9 +106,17 @@
       position: sticky;
       top: 0;
       z-index: 10;
+
       background: var(--header-bg);
-      backdrop-filter: blur(10px);
+      backdrop-filter: none;
+
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(2, 6, 23, .08);
+    }
+
+    html[data-theme="dark"] header,
+    body[data-theme="dark"] header {
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
     }
 
     .wrap {
@@ -89,15 +135,17 @@
 
     h1 {
       margin: 0;
-      font-size: 20px;
-      letter-spacing: .2px;
+      font-size: 18px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
     }
 
     .subtitle {
       margin: 6px 0 0;
       color: var(--muted);
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.4;
+      max-width: 70ch;
     }
 
     .baseRow {
@@ -110,7 +158,6 @@
 
     .pill {
       border: 1px solid var(--border);
-      background: var(--surface);
       padding: 10px 12px;
       border-radius: 999px;
       font-size: 12.5px;
@@ -119,10 +166,22 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      box-shadow: var(--shadow2);
       display: flex;
       align-items: center;
       gap: 8px;
+
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, .35)),
+        var(--surface);
+
+      box-shadow: var(--shadow2);
+    }
+
+    html[data-theme="dark"] .pill,
+    body[data-theme="dark"] .pill {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02)),
+        var(--surface);
     }
 
     .pill code {
@@ -161,18 +220,19 @@
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 12px 12px;
       font-size: 14px;
       outline: none;
-      box-shadow: var(--shadow2);
+      box-shadow: none;
     }
 
     input::placeholder {
       color: rgba(148, 163, 184, .95);
     }
 
-    html[data-theme="dark"] input::placeholder {
+    html[data-theme="dark"] input::placeholder,
+    body[data-theme="dark"] input::placeholder {
       color: rgba(148, 163, 184, .78);
     }
 
@@ -188,7 +248,8 @@
       background: #ffffff !important;
     }
 
-    html[data-theme="dark"] select option {
+    html[data-theme="dark"] select option,
+    body[data-theme="dark"] select option {
       color: rgba(255, 255, 255, .92) !important;
       background: #0b162d !important;
     }
@@ -202,14 +263,15 @@
     button:hover {
       transform: translateY(-1px);
       border-color: rgba(37, 99, 235, .35);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow2);
     }
 
     button.primary {
       border-color: transparent;
-      background: linear-gradient(135deg, var(--blue), #60a5fa);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 1), rgba(96, 165, 250, 1));
       color: #fff;
       font-weight: 750;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, .22);
     }
 
     button.ghost {
@@ -220,7 +282,8 @@
       background: rgba(2, 6, 23, .03);
     }
 
-    html[data-theme="dark"] button.ghost:hover {
+    html[data-theme="dark"] button.ghost:hover,
+    body[data-theme="dark"] button.ghost:hover {
       background: rgba(255, 255, 255, .06);
     }
 
@@ -232,7 +295,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: 10px;
+
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+
+    .iconBtn:hover {
+      transform: translateY(-1px);
+    }
+
+    .iconBtn:active {
+      transform: translateY(0px);
     }
 
     .iconBtn span {
@@ -253,10 +326,15 @@
 
     .card {
       border: 1px solid var(--border);
-      background: var(--surface);
+
+      /* barra superior sin pseudo-elementos */
+      background:
+        linear-gradient(90deg, var(--blue), var(--orange)) 0 0/100% 4px no-repeat,
+        var(--surface);
+
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow2);
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
@@ -265,7 +343,7 @@
 
     .card:hover {
       transform: translateY(-2px);
-      border-color: rgba(37, 99, 235, .35);
+      border-color: rgba(37, 99, 235, .55);
       box-shadow: var(--shadow);
     }
 
@@ -276,12 +354,19 @@
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(37, 99, 235, .08), rgba(249, 115, 22, .08)), var(--surface);
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, .06), rgba(249, 115, 22, .06)),
+        var(--surface);
     }
 
     /* Fondo tipo tablero para transparencia */
     .checker {
-      background: linear-gradient(45deg, var(--checker-a) 25%, var(--checker-b) 25%) 0 0/22px 22px, linear-gradient(-45deg, var(--checker-a) 25%, var(--checker-b) 25%) 0 0/22px 22px, linear-gradient(45deg, var(--checker-b) 75%, var(--checker-a) 75%) 0 0/22px 22px, linear-gradient(-45deg, var(--checker-b) 75%, var(--checker-a) 75%) 0 0/22px 22px, var(--surface);
+      background:
+        linear-gradient(45deg, var(--checker-a) 25%, var(--checker-b) 25%) 0 0/22px 22px,
+        linear-gradient(-45deg, var(--checker-a) 25%, var(--checker-b) 25%) 0 0/22px 22px,
+        linear-gradient(45deg, var(--checker-b) 75%, var(--checker-a) 75%) 0 0/22px 22px,
+        linear-gradient(-45deg, var(--checker-b) 75%, var(--checker-a) 75%) 0 0/22px 22px,
+        var(--surface);
     }
 
     .thumb img {
@@ -293,7 +378,8 @@
       border: 1px solid rgba(226, 232, 240, .85);
     }
 
-    html[data-theme="dark"] .thumb img {
+    html[data-theme="dark"] .thumb img,
+    body[data-theme="dark"] .thumb img {
       background: rgba(0, 0, 0, .18);
       border: 1px solid rgba(255, 255, 255, .12);
     }
@@ -329,9 +415,9 @@
     .tag {
       font-size: 12px;
       padding: 4px 8px;
-      border-radius: 999px;
+      border-radius: 10px;
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--surface2);
       color: var(--muted);
     }
 
@@ -347,13 +433,15 @@
       border: 1px solid var(--border);
       background: var(--surface);
       padding: 9px 10px;
-      border-radius: 12px;
+      border-radius: 10px;
       font-size: 13px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: var(--shadow2);
+
+      box-shadow: none;
+
       cursor: pointer;
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
       color: var(--text);
@@ -363,7 +451,7 @@
     .aBtn:hover {
       transform: translateY(-1px);
       border-color: rgba(37, 99, 235, .35);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow2);
     }
 
     .aBtn.css {
@@ -371,6 +459,7 @@
       background: linear-gradient(135deg, var(--orange), #fb923c);
       color: #fff;
       font-weight: 750;
+      box-shadow: 0 10px 20px rgba(249, 115, 22, .18);
     }
 
     .path {
@@ -406,9 +495,12 @@
       font-size: 14px;
       display: none;
       box-shadow: 0 12px 30px rgba(2, 6, 23, .25);
+      border: 1px solid rgba(255, 255, 255, .16);
+      letter-spacing: .2px;
     }
 
-    html[data-theme="dark"] .toast {
+    html[data-theme="dark"] .toast,
+    body[data-theme="dark"] .toast {
       background: rgba(11, 22, 45, .95);
       border: 1px solid rgba(255, 255, 255, .12);
       box-shadow: 0 12px 25px rgba(0, 0, 0, .28);
@@ -668,12 +760,16 @@
     });
 
     // ---------------------------
-    // THEME TOGGLE (icon-only)
+    // THEME TOGGLE (icon-only) ✅ FIX
     // ---------------------------
     function setTheme(theme) {
       const t = (theme === 'dark') ? 'dark' : 'light';
+
+      // ✅ set en html y body (más robusto)
       document.documentElement.setAttribute('data-theme', t);
-      localStorage.setItem('pierodev_assets_theme', t);
+      document.body.setAttribute('data-theme', t);
+
+      try { localStorage.setItem('pierodev_assets_theme', t); } catch { }
 
       const icon = themeToggle.querySelector('span');
       if (t === 'dark') {
